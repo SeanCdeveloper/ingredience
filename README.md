@@ -1,5 +1,8 @@
-# Ingredience
+## Website for Deployed Application
 
+https://seancdeveloper.github.io/ingredience/
+
+# Ingredience
 The purpose of this application is to allow the user to find recipes based off of their needs, preferences, and/or ingredients they already have. The user will be able to filter through recipes, such as by food allergies and/or intolerances (shellfish, gluten, dairy,peanuts) and even by a specific diet (vegan, vegetarian, keto, paleo) to retrieve various options. Additionally, the user can enter ingredients they already have in their pantry or refrigerator to get recipes that contain those ingredients, like products that will expire soon. Another scenario could be that the user does not know what to do with the ingredients that they have. 
 
 ## User Story
