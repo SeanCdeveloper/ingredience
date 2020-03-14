@@ -66,7 +66,6 @@ $("document").ready(function() {
     });
 
     $(document).on("click", ".modal-trigger", function() {
-        // $(this).empty();
         var recipeID = $(this).attr("id");
         $("#modalheader").text($(this)[0].text);
         getIngredients(recipeID);
@@ -88,8 +87,7 @@ $("document").ready(function() {
         for (var i = 0; i < recipes.results.length; i++) {
             $(".carousel").append("<div class='caritemwrapper'><a href='#modal' class='carousel-item modal-trigger' id='" + recipes.results[i].id + "'></div>");
             recipeImgArray.push("https://spoonacular.com/recipeImages/" + recipes.results[i].image);
-            recipeIdArray.push(recipes.results[i].id);
-            
+            recipeIdArray.push(recipes.results[i].id);            
         }
         for (var i = 0; i < recipes.results.length; i++) {
             $("#" + recipes.results[i].id).append("<p class='recipecardhead'>" + recipes.results[i].title + "</p><img src=" + recipeImgArray[i] + ">");
@@ -179,7 +177,6 @@ $("document").ready(function() {
 
     function getIngredients(recipeID) {
         var ingredientsUrl = "https://api.spoonacular.com/recipes/" + recipeID + "/ingredientWidget.json?";
-        // var apiKey = "256cd3ee2e0548e59e4990ad44a8ec31";
         var apiKey = "3ecef2433f5d402daccaccdf1550dabe";
         $.ajax({
             url: ingredientsUrl + "&apiKey=" + apiKey,
@@ -209,31 +206,5 @@ $("document").ready(function() {
         }
         var ingredients = inpt.value;
         checkIntolerances(ingredients);
-    }
-
-    $("#get-drink").on("click", getRandomCocktail)
-    function getRandomCocktail() {
-        $("#ingredients").empty();
-        $("#ingredients-list").empty();
-        $("#instructions").empty();
-        $("#instructions-list").empty();
-        $("#modalheader").empty();
-        var queryURL = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(function(response) {
-            console.log(response.drinks[0]);
-            $("#modalheader").append(response.drinks[0].strDrink);
-            $("#instructions").append("<img src='" + response.drinks[0].strDrinkThumb + "' id='drink-img'> ");
-            for (var i = 1; i < 15; i++) {
-                var drinkIngredients = response.drinks[0]["strIngredient" + i];
-                var measurements = response.drinks[0]["strMeasure" + i];
-                if ((drinkIngredients != null) && (measurements != null)) {
-                    console.log(measurements + " " + drinkIngredients)
-                    $("#ingredients").append("<p>" + measurements + " " + drinkIngredients + "</p>");
-                }
-            }
-        });
     }
 });
